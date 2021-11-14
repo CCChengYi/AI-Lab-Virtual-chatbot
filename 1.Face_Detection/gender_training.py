@@ -12,11 +12,10 @@ import  numpy as np
 from sklearn.metrics import confusion_matrix, classification_report
 
 #训练参数
-train_epochs=3000  # 训练轮数
-batch_size = random.randint(6,18)       # 每次训练数据,随机
-#batch_size = 9
+train_epochs=1000  # 训练轮数
+batch_size = random.randint(30,50)       # 每次训练数据,随机
 drop_prob = 0.4       # 正则化,丢弃比例
-learning_rate=0.00001       # 学习率
+learning_rate=0.0001       # 学习率
 
 
 # 权重初始化(卷积核初始化)
@@ -159,7 +158,7 @@ for i in range(train_epochs):
    # print(train_input.shape)
 
     result,acc1,cross_entry_r,cos1,f_softmax1,relu_1_r= sess.run([optimizer,acc,cross_entry,cos,f_softmax,relu_1],feed_dict={images_input:train_input,labels_input:train_labels})
-    print(acc1)
+    print("train_epochs: %d   acc:%f" %(i,acc1))
     Cost.append(cross_entry_r)
     Accuracy.append(acc1)
 
@@ -192,7 +191,6 @@ print (classification_report(arg1_r, arg2_r))
 saver = tf.train.Saver()
 saver.save(sess, './model/my-gender-v1.0')
 
-saver.save(sess,'./model/faces.ckpt')
 
 
 
