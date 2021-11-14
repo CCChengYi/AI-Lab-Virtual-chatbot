@@ -135,3 +135,4 @@ plt.title('Pool3 64*14*12')
 plt.show()
 
 print (sess.run(f_softmax,feed_dict))
+
