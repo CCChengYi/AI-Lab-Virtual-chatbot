@@ -3,6 +3,7 @@ import jieba
 import gensim
 import os
 import Audio_words as words
+import pyttsx3
 
 
 def split_word(sentence):
@@ -99,6 +100,17 @@ while True:
     sims = index[tfidf[vec]]             # 相似度比较
     sorted_sims = sorted(enumerate(sims), key=lambda x: x[1], reverse=True)
     i = sorted_sims[0][0]                # 最相似的问题的序号
+    temp = data[i]['answer']
     print(data[i]['answer'])
+
+    #文本转语音
+    engine = pyttsx3.init()  # 初始化语音库
+    # 设置语速
+    rate = engine.getProperty('rate')
+    engine.setProperty('rate', rate - 50)
+    # 输出语音
+    engine.say(temp)  # 合成语音
+    engine.runAndWait()
+
     #sentences = input('Question: ')
     sentences = words.myquestion()
