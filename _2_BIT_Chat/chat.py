@@ -96,8 +96,11 @@ print("  测试完成，输出见outut.json")
 sentences = words.question
 while True:
     sentences = split_word(sentences)    # 分词
+    print(sentences)
     vec = dictionary.doc2bow(sentences)  # 转词袋表示
+    print(vec)
     sims = index[tfidf[vec]]             # 相似度比较
+    print(sims)
     sorted_sims = sorted(enumerate(sims), key=lambda x: x[1], reverse=True)
     i = sorted_sims[0][0]                # 最相似的问题的序号
     temp = data[i]['answer']
